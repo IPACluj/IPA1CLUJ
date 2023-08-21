@@ -33,7 +33,6 @@ export async function POST(req: Request) {
       },
     });
 
-    console.log(card)
 
     return NextResponse.json(card);
   } catch (error) {

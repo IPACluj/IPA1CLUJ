@@ -8,9 +8,8 @@ export default async function Home() {
 
 
   const categories = await prismadb.category.findMany();
-  const card = await prismadb.card.findMany();
+  const data = await prismadb.card.findMany();
 
-  console.log(card)
 
 
   return (
@@ -18,9 +17,8 @@ export default async function Home() {
       <div className="">
         <CatMenu categories={categories} />
       </div>
-      <div className="grid mt-6 md:gap-4 lg:gap-8 xl:gap-12 content-around max-w-6xl mx-auto md:grid-cols-2">
-        <Card data={card}></Card>
-        
+      <div className="">
+        <Card data={data}></Card>
       </div>
     </div>
   );
