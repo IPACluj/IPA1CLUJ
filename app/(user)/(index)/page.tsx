@@ -16,7 +16,6 @@ const Home = ({ searchParams }: RootPageProps) => {
   const [cards, setCards] = useState<any[]>([]); // Use the appropriate type for your data
 
   const fetchData = async () => {
-    "use server";
     try {
       const response = await fetch("/api/oferte", { cache: "no-cache" }); //
       const responseData = await response.json();
