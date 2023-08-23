@@ -10,7 +10,7 @@ export async function GET(req: Request, res: Response) {
     const cards = await prismadb.card.findMany();
     // Perform any necessary backend logic using the 'id'
     // return  NextResponse.json(categories);
-    return NextResponse.json(categories);
+    return NextResponse.json({categories,cards});
   } catch (error) {
     console.log("db error", error);
     return new NextResponse("Internal Error", { status: 500 });
