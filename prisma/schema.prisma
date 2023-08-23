@@ -18,13 +18,13 @@ model Category {
 model Card {
   id            String @id @default(uuid())
   name          String @db.Text
-  s_description String
+  s_description String @db.Text
   l_description String @db.Text
   
   procent       Int    
-  photo         String
+  photo         String @db.Text
   time          String
-  maps_link     String
+  maps_link     String @db.Text
   tel           String
 
   createdAt     DateTime @default(now())

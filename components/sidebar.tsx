@@ -11,6 +11,8 @@ import {
 } from "../node_modules/lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import Footer from "./footet";
+import { SheetTrigger } from "./ui/sheet";
+import { Menu } from "@radix-ui/react-menubar";
 const Sidebar = () => {
   const pathname = usePathname();
   const router = useRouter();
@@ -64,6 +66,7 @@ const Sidebar = () => {
               )}
               key={route.href}
             >
+             
               <div className="flex text-md flex-col gap-y-2 text-center items-center flex-1">
                 <route.icon
                   className={cn(
