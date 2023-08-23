@@ -16,7 +16,7 @@ const Home = ({ searchParams }: RootPageProps) => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/api/oferte", { cache: "no-store" }); //
+      const response = await fetch("/api/oferte",{ next: { revalidate: 10 } }); //
       const responseData = await response.json();
       setCategories(responseData);
     } catch (error) {
@@ -26,7 +26,7 @@ const Home = ({ searchParams }: RootPageProps) => {
 
   useEffect(() => {
     fetchData();
-  }, [searchParams]);
+  }, []);
 
   // const categories = await prismadb.category.findMany();
   // const data = await prismadb.card.findMany({
