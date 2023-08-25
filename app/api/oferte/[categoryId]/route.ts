@@ -1,13 +1,8 @@
 import prismadb from "@/lib/prismadb";
-// import { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client";
-import { NextApiRequest } from "next";
-// import { useRouter } from "next/navigation";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-  req: NextApiRequest,
-
+  req: NextRequest,
   // res: Response,
   {
     params,
@@ -22,12 +17,18 @@ export async function GET(
 
     const id = getparams.get("id") as string;
     const name = getparams.get("name") as string;
-
+    console.log(name);
     const categories = await prismadb.category.findMany();
-
 
     if (id == null || id == "Toate" || id == undefined) {
       var cards = await prismadb.card.findMany();
+      cards = await prismadb.card.findMany({
+        where: {
+          name: {
+            contains: name || "",
+          },
+        },
+      });
     } else {
       const filtedcat = await prismadb.category.findMany({
         where: {
@@ -41,14 +42,12 @@ export async function GET(
         where: {
           categoryId: filtedcat[0]?.id,
           name: {
-            contains: name || '',
+            contains: name || "",
           },
         },
       });
     }
 
-    // Perform any necessary backend logic using the 'id'
-    // return  NextResponse.json(categories);
     return NextResponse.json({ categories, cards });
   } catch (error) {
     console.log("db error", error);
