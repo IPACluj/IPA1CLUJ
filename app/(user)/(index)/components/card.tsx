@@ -7,6 +7,12 @@ import { Clock3, BadgePercent } from "lucide-react";
 import Image from "next/image";
 import styles from "../../pages.module.css";
 import { Card } from "@prisma/client";
+import axios from "axios";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+// import { ToastAction } from "@/components/ui/toast";
+import { useSession } from "next-auth/react";
+import { stat } from "fs";
 
 interface CardProps {
   data: Card[];
@@ -16,9 +22,26 @@ const font = Poppins({
   weight: "500",
   subsets: ["latin"],
 });
+
 const Card = ({ data }: CardProps) => {
+  const { status } = useSession();
+  const { toast } = useToast();
+
+  async function Delete(id: string, name: string) {
+    try {
+      toast({
+        variant: "destructive",
+        title: `Ai Sters ${name} `,
+      });
+      await axios.delete(`/api/card/${id}`);
+    } catch (error) {
+      // router.refresh();
+      console.log(error);
+    }
+  }
   return (
-    <div className="grid mt-6 md:gap-4 lg:gap-8 xl:gap-12 content-around max-w-6xl mx-auto xl:grid-cols-2">
+    <div className="grid mt-6 md:gap-4 lg:gap-8 xl:gap-12 content-around max-w-[100rem] mx-auto xl:grid-cols-2">
+      <div></div>
       {data.map((item) => (
         <div
           key={item.id}
@@ -34,7 +57,6 @@ const Card = ({ data }: CardProps) => {
             {" "}
             <div className="cursor-pointer hover:opacity-75 h-32 w-32  md:w-40 xl:w-56 mt-[0.5rem] mb-2 ml-[0.4rem]">
               <img
-            
                 alt="img"
                 className="rounded-xl m-auto h-full object-cover  shadow-md"
                 src={item.photo}
@@ -64,11 +86,31 @@ const Card = ({ data }: CardProps) => {
             </div>
             <div className="flex  text-primary items-center ">
               <Clock3 className="w-4 h-4 mr-1 mb-1" />
-              <span className="text-xs pb-1">{item.time}</span>
+              <span className="text-xs pb-1">{item.time}</span>{" "}
+              {status === "authenticated" && (
+                <div className="ml-auto">
+                  {" "}
+                  <Link
+                    href={`/admin/${item.id}`}
+                    className=" mx-1 items-center rounded-sm bg-blue-500 py-0.2 px-2  "
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    onClick={() => Delete(item.id, item.name)}
+                    className="ml-auto items-center rounded-sm bg-red-500 py-0.2 px-2  "
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
             </div>
 
             <div className="grid border-t-2 text-sm border-slate-600 pt-1 grid-cols-2 place-items-center">
-              <Link target="_blank" href="tel:0752023611">
+              <Link
+                target="_blank"
+                href="tel:0752023611"
+              >
                 {" "}
                 <div className="flex ml-0 items-center hover:text-blue-300 cursor-pointer col-span-1">
                   <span className="pr-2 hidden md:block">{item.tel}</span>

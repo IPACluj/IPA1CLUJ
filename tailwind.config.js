@@ -19,6 +19,7 @@ module.exports = {
       colors: {
         rosu: "#E63946",
         main: "#F1FAEE",
+        verde: "#03C04A",
 
         c1: "#A8DADC",
         c2: "#457B9D",

@@ -8,11 +8,14 @@ import {
   Home,
   Plus,
   Settings,
+  Target,
 } from "../node_modules/lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import Footer from "./footet";
 import { SheetTrigger } from "./ui/sheet";
 import { Menu } from "@radix-ui/react-menubar";
+import { Signal } from "lucide-react";
+
 const Sidebar = () => {
   const pathname = usePathname();
   const router = useRouter();
@@ -21,7 +24,13 @@ const Sidebar = () => {
     {
       icon: Home,
       href: "/",
-      label: "Acasa",
+      label: "Colaborari Cluj",
+      pro: false,
+    },
+    {
+      icon: Signal ,
+      href: "https://iparomania.ro/#",
+      label: "Telefonie",
       pro: false,
     },
     {
@@ -64,9 +73,9 @@ const Sidebar = () => {
                 "text-muted-foreground text-xs group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-primary hover:bg-primary/10 rounded-lg transition",
                 pathname === route.href && "bg-primary/10 text-primary  "
               )}
+
               key={route.href}
             >
-             
               <div className="flex text-md flex-col gap-y-2 text-center items-center flex-1">
                 <route.icon
                   className={cn(
@@ -82,7 +91,6 @@ const Sidebar = () => {
       </div>
       <Footer />
     </div>
-    
   );
 };
 

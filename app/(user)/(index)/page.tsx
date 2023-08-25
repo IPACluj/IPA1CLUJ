@@ -7,21 +7,32 @@ import axios from "axios";
 
 interface RootPageProps {
   searchParams: {
-    categoryId: string;
+    id: string ;
+    name:string ;
   };
 }
-export const revalidate = 10;
+
+// export const revalidate = 10;
 const Home = ({ searchParams }: RootPageProps) => {
   const [categories, setCategories] = useState<any[]>([]); // Use the appropriate type for your data
   const [cards, setCards] = useState<any[]>([]); // Use the appropriate type for your data
 
-  const fetchData = async () => {
+  const fetchData = async (id: string) => {
     try {
-      const response = await fetch("/api/oferte", { cache: "no-cache" }); //
+    
+      const queryString = new URLSearchParams(searchParams).toString()
+      console.log(queryString);
+
+      console.log(searchParams.id, searchParams.name)
+      const response = await fetch(`/api/oferte/${queryString || 'all'}`, {
+        cache: "no-cache",
+      }); //
+      // console.log(response)
       const responseData = await response.json();
       const categories = responseData.categories;
       const cards = responseData.cards;
-
+      
+      
       setCategories(categories);
       setCards(cards);
     } catch (error) {
@@ -30,10 +41,9 @@ const Home = ({ searchParams }: RootPageProps) => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(searchParams.id);
+  }, [searchParams.id, searchParams.name]); // Re-fetch data whenever the categoryId changes
 
-  console.log(categories);
   return (
     <div className="h-full  mr-2 ">
       <div className="">

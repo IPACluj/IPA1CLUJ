@@ -29,6 +29,7 @@ import { ImageUpload } from "@/components/image-upload";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, Wand2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 
 const font = Poppins({
   weight: "500",
@@ -67,9 +68,12 @@ const formSchema = z.object({
 });
 
 const AddForm = ({ initialData, categories }: CardFormProps) => {
+  const router = useRouter();
+  const { toast } = useToast();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: initialData || {
       name: "",
       s_description: "",
       l_description: "",
@@ -88,11 +92,25 @@ const AddForm = ({ initialData, categories }: CardFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       // values.procent = parseInt(values.procent);
-
-      await axios.post("/api/card", values);
-    } catch {}
+      if (initialData) {
+        const res = await axios.patch(`/api/card/${initialData.id}`, values);
+        
+      } else {
+        await axios.post("/api/card", values);
+      }
+      toast({
+        description: "Success.",
+      });
+      router.refresh();
+      router.push("/");
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        description: " Ceva nu merge bine, email la ripan.ionut.web@gmail.com",
+      });
+      console.log(error);
+    }
   };
-
   return (
     <div
       className={cn("h-full p-4 space-y-2  max-w-3xl mx-auto", font.className)}
@@ -382,8 +400,8 @@ const AddForm = ({ initialData, categories }: CardFormProps) => {
               size="lg"
               disabled={isLoading}
             >
-              {/* {initialData ? "Edit your companion" : "Create your companion"} */}{" "}
-              Adauga in baza de date
+              {initialData ? "Salveaza modificari in baza de date" : " Adauga in baza de date"}{" "}
+          
               <PlusCircle className="w-5 h-5 ml-2" />
             </Button>
           </div>

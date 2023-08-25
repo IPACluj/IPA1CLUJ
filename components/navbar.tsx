@@ -9,6 +9,9 @@ import SearchInput from "./search-input";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import { LoginButton, LogoutButton } from "@/app/(auth)/auth";
+import { User } from "@/app/(auth)/user";
+import { useSession } from "next-auth/react";
 
 const font = Poppins({
   weight: "600",
@@ -16,8 +19,14 @@ const font = Poppins({
 });
 
 const Navbar = () => {
+  const { status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      console.log("no login");
+    },
+  });
+  console.log(status)
   const textToType = "Cluj";
-
   return (
     <div className="sticky top-0 z-20">
       <div className="w-full px-4 items-center border-primary/10 bg-secondary border-b-2 flex">
@@ -38,7 +47,11 @@ const Navbar = () => {
         <div className="hidden md:block flex-1 ">
           <SearchInput />
         </div>
-
+        <div>
+          {" "}
+          {/* <LoginButton></LoginButton> */}
+          {status !== 'loading'? <LogoutButton></LogoutButton> : null}{" "}
+        </div>
         <div className="flex ml-auto items-center space-x-2">
           {/* <Button
             className="hidden  md:block px-2.5 py-1"

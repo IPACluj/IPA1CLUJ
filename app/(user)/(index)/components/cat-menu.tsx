@@ -19,10 +19,12 @@ const CatMenu = ({ categories }: CatMenuProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
-  console.log(id)
+  // console.log(id)
   const onClick = (id: string | undefined) => {
+   
     const query = { id };
 
+    
     const url = qs.stringifyUrl(
       {
         url: window.location.href,
