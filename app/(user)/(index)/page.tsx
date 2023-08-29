@@ -1,23 +1,19 @@
 "use client";
+export const dynamic = "force-dynamic";
+
 import prismadb from "@/lib/prismadb";
 import Card from "./components/card";
 import CatMenu from "./components/cat-menu";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
-interface RootPageProps {
-  searchParams: {
-    id: string;
-    name: string;
-  };
-}
-
-const Home = ({ searchParams }: RootPageProps) => {
-
+const Home = () => {
   const [categories, setCategories] = useState<any[]>([]);
   const [cards, setCards] = useState<any[]>([]);
   const [filteredCards, setFilteredCards] = useState<any[]>([]); // Store the filtered cards
+  const searchParams = useSearchParams();
 
   const fetchData = async () => {
     try {
@@ -30,7 +26,7 @@ const Home = ({ searchParams }: RootPageProps) => {
       const cards = responseData.cards;
       setCategories(categories);
       setCards(cards);
-      setFilteredCards(cards)
+      setFilteredCards(cards);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -40,12 +36,12 @@ const Home = ({ searchParams }: RootPageProps) => {
     fetchData();
   }, []); // Re-fetch data whenever the categoryId changes
 
-    const sortData = (searchParams: RootPageProps["searchParams"]) => {
-    console.log(searchParams.id, searchParams.name);
+  const sortData = (name: any, id: any) => {
+    console.log(id, name);
     const selectedCategory = categories.find(
-      (category) => category.name === searchParams.id
+      (category) => category.name === id
     );
-    if (searchParams.id == "Toate") {
+    if (id == "Toate") {
       console.log(cards);
       setFilteredCards(cards);
     } else if (selectedCategory) {
@@ -59,22 +55,21 @@ const Home = ({ searchParams }: RootPageProps) => {
         setFilteredCards(cards);
       }
     }
-    if(searchParams.name){
-      const fcards = cards.filter(card =>
-        card.name.toLowerCase().includes(searchParams.name.toLowerCase()) // 
+    if (name) {
+      const fcards = cards.filter((card) =>
+        card.name.toLowerCase().includes(name.toLowerCase())
       );
-      setFilteredCards(fcards)
+      setFilteredCards(fcards);
     }
-
-    // Sorting logic here to create 'sortedData'
-    // const sortedData = searchParams.sort(/* sorting logic */);
 
     return 0;
   };
 
   useEffect(() => {
-    sortData(searchParams);
-  }, [ searchParams]); // Re-fetch data whenever the categoryId changes
+    var name = searchParams.get("name");
+    var id = searchParams.get("id");
+    sortData(name, id);
+  }, [searchParams]);
 
   return (
     <div className="h-full  mr-2 ">
@@ -88,4 +83,3 @@ const Home = ({ searchParams }: RootPageProps) => {
   );
 };
 export default Home;
-export const dynamic = "force-dynamic";
