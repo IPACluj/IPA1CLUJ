@@ -4,6 +4,7 @@ import Card from "./components/card";
 import CatMenu from "./components/cat-menu";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 interface RootPageProps {
   searchParams: {
@@ -13,6 +14,7 @@ interface RootPageProps {
 }
 
 const Home = ({ searchParams }: RootPageProps) => {
+
   const [categories, setCategories] = useState<any[]>([]);
   const [cards, setCards] = useState<any[]>([]);
   const [filteredCards, setFilteredCards] = useState<any[]>([]); // Store the filtered cards
@@ -38,7 +40,7 @@ const Home = ({ searchParams }: RootPageProps) => {
     fetchData();
   }, []); // Re-fetch data whenever the categoryId changes
 
-  const sortData = (searchParams: RootPageProps["searchParams"]) => {
+    const sortData = (searchParams: RootPageProps["searchParams"]) => {
     console.log(searchParams.id, searchParams.name);
     const selectedCategory = categories.find(
       (category) => category.name === searchParams.id
@@ -72,7 +74,7 @@ const Home = ({ searchParams }: RootPageProps) => {
 
   useEffect(() => {
     sortData(searchParams);
-  }, [searchParams.id, searchParams.name, searchParams]); // Re-fetch data whenever the categoryId changes
+  }, [ searchParams]); // Re-fetch data whenever the categoryId changes
 
   return (
     <div className="h-full  mr-2 ">
