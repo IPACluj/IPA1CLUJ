@@ -28,6 +28,7 @@ const Home = ({ searchParams }: RootPageProps) => {
       const cards = responseData.cards;
       setCategories(categories);
       setCards(cards);
+      setFilteredCards(cards)
     } catch (error) {
       console.error("Error fetching data:", error);
     }
