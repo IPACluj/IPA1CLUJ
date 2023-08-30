@@ -40,7 +40,8 @@ const Home = () => {
     console.log(id, name);
     const selectedCategory = categories.find(
       (category) => category.name === id
-    );
+    );      console.log(cards);
+
     if (id == "Toate") {
       console.log(cards);
       setFilteredCards(cards);

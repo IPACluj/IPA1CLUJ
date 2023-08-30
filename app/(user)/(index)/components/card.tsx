@@ -41,7 +41,6 @@ const Card = ({ data }: CardProps) => {
   }
   return (
     <div className="grid mt-6 md:gap-4 lg:gap-8 xl:gap-12 content-around max-w-[100rem] mx-auto xl:grid-cols-2">
-      <div></div>
       {data.map((item) => (
         <div
           key={item.id}
