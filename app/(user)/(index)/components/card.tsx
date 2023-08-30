@@ -40,7 +40,7 @@ const Card = ({ data }: CardProps) => {
     }
   }
   return (
-    <div className="grid mt-6 md:gap-4 lg:gap-8 xl:gap-12 content-around max-w-[100rem] mx-auto xl:grid-cols-2">
+    <div className="grid mt-6 md:gap-4 lg:gap-8 xl:gap-12 content-around max-w-[100rem] mx-auto 2xl:grid-cols-2">
       {data.map((item) => (
         <div
           key={item.id}
@@ -54,7 +54,7 @@ const Card = ({ data }: CardProps) => {
             href={item.maps_link}
           >
             {" "}
-            <div className="cursor-pointer hover:opacity-75 h-32 w-32  md:w-40 xl:w-56 mt-[0.5rem] mb-2 ml-[0.4rem]">
+            <div className="cursor-pointer hover:opacity-75 h-32 w-32 xl:h-52  md:w-40 xl:w-56 mt-[0.5rem] mb-2 ml-[0.4rem]">
               <img
                 alt="img"
                 className="rounded-xl m-auto h-full object-cover  shadow-md"
