@@ -39,18 +39,18 @@ const CatMenu = ({ categories }: CatMenuProps) => {
   return (
     <div
       className={cn(
-        " justify-center md:text-md text-sm overflow-x-auto mt-3 flex",
+        "   md:text-md text-sm flex justify-center mt-3 mx-5 ",
         font.className
       )}
     >
       
-      <div className="shadow-xl">
+      <div className="shadow-xl flex  flex-nowrap overflow-x-scroll rounded-md">
         {categories.map((item, index) => (
           <button
             onClick={() => onClick(item.name)}
             key={index}
             className={cn(
-              "first:rounded-l-md transition duration-300 last:rounded-r-md  px-4  py-2  ",
+              "first:rounded-l-md  transition duration-300 last:rounded-r-md  px-4  py-2  ",
               item.name == id
                 ? " bg-primary/25 border-b-2 border-blue-500"
                 : "bg-primary/10 ",

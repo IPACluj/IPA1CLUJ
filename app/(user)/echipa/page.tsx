@@ -8,19 +8,19 @@ const Echipa = () => {
           </h1>
           <span>Szekely Elena Maria</span>
         </div>
-        <div className="shadow-md w-64 col-span-2 md:col-span-1 place-items-center mt-5 p-3 rounded-sm border-blue-400 border-dashed border-2 bg-primary/5 text-center  ">
+        <div className="shadow-md w-64 col-span-2 md:col-span-1 place-items-center mt-5 p-3 rounded-sm border-gray-400  border-2 bg-primary/5 text-center  ">
           <h1 className="font-semibold">Vicepresedinte 1</h1>
           <span>Padurean Aurel Ioan</span>
         </div>
-        <div className="shadow-md w-64 col-span-2 md:col-span-1  place-items-center mt-5 p-3 rounded-sm border-blue-400 border-dashed border-2 bg-primary/5 text-center  ">
+        <div className="shadow-md w-64 col-span-2 md:col-span-1  place-items-center mt-5 p-3 rounded-sm border-gray-400  border-2 bg-primary/5 text-center  ">
           <h1 className="font-semibold">Vicepresedinte 2</h1>
           <span>Coc Ovidiu Sorin</span>
         </div>
-        <div className="shadow-md w-64 col-span-2 md:col-span-1  place-items-center mt-5 p-3 rounded-sm border-blue-400 border-dashed border-2 bg-primary/5 text-center  ">
+        <div className="shadow-md w-64 col-span-2 md:col-span-1  place-items-center mt-5 p-3 rounded-sm border-gray-400 border-2 bg-primary/5 text-center  ">
           <h1 className="font-semibold">Secretar</h1>
           <span>Iosip Claudia Roxana</span>
         </div>
-        <div className="shadow-md w-64 col-span-2 md:col-span-1  place-items-center mt-5 p-3 rounded-sm border-blue-400 border-dashed border-2 bg-primary/5 text-center  ">
+        <div className="shadow-md w-64 col-span-2 md:col-span-1  place-items-center mt-5 p-3 rounded-sm border-gray-400  border-2 bg-primary/5 text-center  ">
           <h1 className="font-semibold">Trezorier</h1>
           <span>Ionescu Diana</span>
         </div>

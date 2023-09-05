@@ -50,7 +50,7 @@ const Card = ({ data }: CardProps) => {
           )}
         >
           <Link
-            target="_blank"
+           
             href={item.maps_link}
           >
             {" "}
@@ -118,8 +118,8 @@ const Card = ({ data }: CardProps) => {
               </Link>
 
               <Link
-                target="black"
-                href="https://www.google.com/search?sca_esv=558024616&tbs=lf:1,lf_ui:4&tbm=lcl&sxsrf=AB5stBiGAkpMexJ7ALNZqrQIwvPKpw9DoA:1692338318168&q=kfc+locations+cluj&rflfq=1&num=10&ved=2ahUKEwiA6qzCw-WAAxVG_qQKHVeECdUQtgN6BAghEAc#rlfi=hd:;si:;mv:[[46.7741839,23.6343039],[46.7488526,23.5280465]];tbs:lrf:!1m4!1u3!2m2!3m1!1e1!2m1!1e3!3sIAE,lf:1,lf_ui:4"
+               
+                href={item.maps_link}
               >
                 <div className="flex items-center hover:text-blue-300 cursor-pointer">
                   <span className="pr-2 hidden md:block">Visit</span>

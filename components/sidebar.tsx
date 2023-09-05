@@ -29,7 +29,7 @@ const Sidebar = () => {
     },
     {
       icon: Signal ,
-      href: "https://iparomania.ro/#",
+      href: "/tel",
       label: "Telefonie",
       pro: false,
     },

@@ -43,7 +43,6 @@ const Home = () => {
     );      console.log(cards);
 
     if (id == "Toate") {
-      console.log(cards);
       setFilteredCards(cards);
     } else if (selectedCategory) {
       // Filter cards based on the selected category's id
