@@ -45,7 +45,7 @@ const Card = ({ data }: CardProps) => {
         <div
           key={item.id}
           className={cn(
-            "font flex bg-primary/5  shadow-md md:mx-5 mx-2 mb-4 rounded-xl  transition border-0",
+            "font  md:flex bg-primary/5  shadow-md md:mx-5 mx-2 mb-4 rounded-xl  transition border-0",
             font.className
           )}
         >
@@ -53,18 +53,36 @@ const Card = ({ data }: CardProps) => {
            
             href={item.maps_link}
           >
+              <div className="ml-1 mt-1 mb-1 flex-1 flex flex-col md:hidden ">
+            <div className="flex mr-2">
+              <div className=" flex-1 ">{item.name}</div>
+              <div className="rounded-sm  bg-red-600  ">
+                <span className=" flex flex-2  items-center border-blue-300  px-0.5">
+                  <Image
+                    src="https://res.cloudinary.com/dls9oufks/image/upload/v1692617121/price-tag_fw5iva.png"
+                    alt="icon"
+                    className={`${styles.coloredImage} z-1 `}
+                    width={18}
+                    height={18}
+                  />
+                  {/* <BadgePercent className="w-4 h-4" /> */}
+                  <span className="ml-1 text-white">{item.procent}%</span>
+                </span>{" "}
+              </div>
+            </div>
+            </div>
             {" "}
-            <div className="cursor-pointer hover:opacity-75 h-32 w-32 xl:h-52  md:w-40 xl:w-56 mt-[0.5rem] mb-2 ml-[0.4rem]">
+            <div className="cursor-pointerhover:opacity-75 h-40 w-full  xl:h-52  md:w-40 xl:w-56 mt-[0.5rem] mb-2 ml-[0.4rem]">
               <img
                 alt="img"
-                className="rounded-xl m-auto h-full object-cover  shadow-md"
+                className="rounded-xl  m-auto h-40 object-cover  shadow-md"
                 src={item.photo}
               ></img>
             </div>
           </Link>
 
           <div className="ml-1 mt-1 mb-1 flex-1 flex flex-col  ">
-            <div className="flex mr-2">
+            <div className="hidden md:flex mr-2">
               <div className=" flex-1 ">{item.name}</div>
               <div className="rounded-sm  bg-red-600  ">
                 <span className=" flex flex-2  items-center border-blue-300  px-0.5">

@@ -15,6 +15,7 @@ import Footer from "./footet";
 import { SheetTrigger } from "./ui/sheet";
 import { Menu } from "@radix-ui/react-menubar";
 import { Signal } from "lucide-react";
+import { BedDouble } from 'lucide-react';
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -31,6 +32,12 @@ const Sidebar = () => {
       icon: Signal ,
       href: "/tel",
       label: "Telefonie",
+      pro: false,
+    },
+    {
+      icon: BedDouble  ,
+      href: "https://caseipa.iparomania.ro/?_ga=2.124805134.526262126.1694691861-544348090.1694691861",
+      label: "Case IPA",
       pro: false,
     },
     {
@@ -51,12 +58,7 @@ const Sidebar = () => {
       label: "Contact",
       pro: false,
     },
-    {
-      icon: Settings,
-      href: "/admin",
-      label: "Setari Admin",
-      pro: false,
-    },
+   
   ];
   const onNavigate = (url: string, pro: boolean) => {
     return router.push(url);

@@ -72,7 +72,7 @@ const Home = () => {
   }, [searchParams]);
 
   return (
-    <div className="h-full  mr-2 ">
+    <div className="h-full mr-2 pb-5">
       <div className="">
         <CatMenu categories={categories} />
       </div>
