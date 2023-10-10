@@ -10,9 +10,9 @@ const Footer = () => {
       <p className="w-full flex text-xs ">
         {" "}
         Ripan Ionut{" "}
-        <Link href="mailto:ripan.ionut.web@gmail.com">
+        <a href="mailto:ripan.ionut.web@gmail.com">
           <MailCheck className="w-5=4 h-4 ml-1 text-red-500" />
-        </Link>
+        </a>
       </p>
     </div>
   );

@@ -8,12 +8,17 @@ import Sidebar from "@/components/sidebar";
 import Footer from "@/components/footet";
 import { Toaster } from "@/components/ui/toaster";
 import { Providers } from "@/app/(auth)/providers";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "IPA1Cluj",
   description: "",
+  icons: {
+    icon: '/ipa_logo_edit.png',
+  },
+  
 };
 
 export default function RootLayout({
@@ -23,6 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      
       <body className={cn("bg-secondary", inter.className)}>
         <ThemeProvider
           attribute="class"
