@@ -9,12 +9,12 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
-const Home = () => {
+const Home =  () => {
+
   const [categories, setCategories] = useState<any[]>([]);
   const [cards, setCards] = useState<any[]>([]);
   const [filteredCards, setFilteredCards] = useState<any[]>([]); // Store the filtered cards
   const searchParams = useSearchParams();
-
   const fetchData = async () => {
     try {
       // const queryString = new URLSearchParams(searchParams).toString()

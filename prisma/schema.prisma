@@ -4,9 +4,9 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
-  relationMode = "prisma"
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model Category {
@@ -36,7 +36,6 @@ model Card {
   // messages      Message[]
 
   @@index([categoryId])
-  @@fulltext([name])
 }
 model User {
   id       Int     @id @default(autoincrement())
